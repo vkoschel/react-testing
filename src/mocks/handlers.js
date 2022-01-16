@@ -5,11 +5,11 @@ export const handlers = [
     return res(
       ctx.json([
         {
-          name: 'Chocolate',
+          name: 'Chocolate scoop',
           imagePath: '/images/chocolate.png',
         },
         {
-          name: 'Vanilla',
+          name: 'Vanilla scoop',
           imagePath: '/images/vanilla.png',
         },
       ])
