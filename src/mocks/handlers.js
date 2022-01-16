@@ -15,4 +15,22 @@ export const handlers = [
       ])
     );
   }),
+  rest.get('http://localhost:3030/toppings', (req, res, ctx) => {
+    return res(
+      ctx.json([
+        {
+          name: 'coconut topping',
+          imagePath: '/images/coco.png',
+        },
+        {
+          name: 'chocolate chips topping',
+          imagePath: '/images/choco.png',
+        },
+        {
+          name: 'hot fudge topping',
+          imagePath: '/images/hot.png',
+        },
+      ])
+    );
+  }),
 ];
