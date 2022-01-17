@@ -5,6 +5,7 @@ export const handlers = [
     return res(
       ctx.json([
         {
+        
           name: 'Chocolate scoop',
           imagePath: '/images/chocolate.png',
         },
