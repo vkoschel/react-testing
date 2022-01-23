@@ -45,8 +45,14 @@ test('order phases for golden path', async () => {
   const confirmOrderButton = screen.getByRole('button');
   userEvent.click(confirmOrderButton);
 
+  const loading = screen.getByText(/loading/i);
+  expect(loading).toBeInTheDocument();
+
   const thankYouHeader = await screen.findByRole('heading');
   expect(thankYouHeader).toBeInTheDocument();
+
+  const notLoading = screen.queryByText(/loading/i);
+  expect(notLoading).not.toBeInTheDocument();
 
   const orderNumber = await screen.findByText(/order number/i);
   expect(orderNumber).toBeInTheDocument();
@@ -58,7 +64,7 @@ test('order phases for golden path', async () => {
   expect(scoopsSubTotal).toHaveTextContent('0.00');
 
   const toppingsTotal = screen.getByText('Toppings total: $', { exact: false });
-  expect(toppingsTotal).toHaveTextContent('0.00')
+  expect(toppingsTotal).toHaveTextContent('0.00');
 
   await screen.findByRole('spinbutton', {
     name: /vanilla/i,
