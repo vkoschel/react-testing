@@ -73,3 +73,29 @@ test('order phases for golden path', async () => {
     name: /chocolate/i,
   });
 });
+
+test('no toppings header if no toppings were added', async () => {
+  render(<App />);
+
+  const vanillaInput = await screen.findByRole('spinbutton', {
+    name: /vanilla/i,
+  });
+  userEvent.clear(vanillaInput);
+  userEvent.type(vanillaInput, '1');
+
+  const chocolateInput = await screen.findByRole('spinbutton', {
+    name: /chocolate/i,
+  });
+  userEvent.clear(chocolateInput);
+  userEvent.type(chocolateInput, '2');
+
+  const orderSummaryButton = screen.getByRole('button');
+  userEvent.click(orderSummaryButton);
+
+  const scoopsHeading = screen.getByRole('heading', { name: /scoops/i });
+  expect(scoopsHeading).toBeInTheDocument();
+
+  const toppingsHeading = screen.queryByRole('heading', { name: /toppings/i });
+  expect(toppingsHeading).not.toBeInTheDocument();
+
+});
