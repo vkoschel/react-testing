@@ -5,7 +5,6 @@ export const handlers = [
     return res(
       ctx.json([
         {
-        
           name: 'Chocolate scoop',
           imagePath: '/images/chocolate.png',
         },
@@ -33,5 +32,8 @@ export const handlers = [
         },
       ])
     );
+  }),
+  rest.post('http://localhost:3030/order', (req, res, ctx) => {
+    return res(ctx.json({ orderNumber: 123123123 }));
   }),
 ];
